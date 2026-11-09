@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "ask": ["Bash(git commit *)", "Bash(git * commit *)"]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          { "type": "command", "command": "node", "args": ["/ПУТЬ/К/kogda/hooks/mark-edit.mjs"], "timeout": 15 }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["/ПУТЬ/К/kogda/hooks/gate.mjs"],
+            "timeout": 900,
+            "statusMessage": "К-О-Г-Д-А: проверки по изменённым файлам"
+          }
+        ]
+      }
+    ]
+  }
+}
